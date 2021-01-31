@@ -10,6 +10,7 @@ import io.ktor.http.content.*
 import io.ktor.features.*
 import org.slf4j.event.*
 import com.fasterxml.jackson.databind.*
+import com.github.mgurov.domain.customers
 import io.ktor.jackson.*
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -40,6 +41,10 @@ fun Application.module(testing: Boolean = false) {
 
         get("/json/jackson") {
             call.respond(mapOf("hello" to "world"))
+        }
+
+        get("/api/customers/") {
+            call.respond(customers)
         }
     }
 }
