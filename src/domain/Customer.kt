@@ -1,10 +1,11 @@
 package domain
 
 import java.time.Instant
+import java.util.*
 
 data class Customer(
-    val id: String,
+    val id: String = UUID.randomUUID().toString(),
     val firstName: String,
     val secondName: String,
-    val registrationDateTime: Instant,
+    val registrationDateTime: Instant = Instant.now(),
 )
