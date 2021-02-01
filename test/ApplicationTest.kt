@@ -7,6 +7,7 @@ import domain.Customer
 import io.ktor.http.*
 import kotlin.test.*
 import io.ktor.server.testing.*
+import org.assertj.core.api.Assertions.assertThat
 
 class ApplicationTest {
     @Test
@@ -26,6 +27,9 @@ class ApplicationTest {
                 val mapper = jacksonObjectMapper()
                 mapper.registerModule(JavaTimeModule())
                 val parsed: List<Customer> = mapper.readValue(response.byteContent!!)
+                assertThat(parsed.map { it.firstName to it.secondName }).containsExactlyInAnyOrder(
+                    "First" to "Uno", "Second" to "Dos"
+                )
                 assertEquals("HELLO WORLD!", parsed)
             }
         }
