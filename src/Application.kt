@@ -12,6 +12,7 @@ import org.slf4j.event.*
 import com.fasterxml.jackson.databind.*
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.github.mgurov.domain.customers
+import com.github.mgurov.domain.orders
 import com.github.mgurov.domain.products
 import io.ktor.jackson.*
 
@@ -52,6 +53,10 @@ fun Application.module(testing: Boolean = false) {
 
         get("/api/products/") {
             call.respond(products)
+        }
+
+        get("/api/orders/") {
+            call.respond(orders)
         }
     }
 }
