@@ -12,6 +12,7 @@ import org.slf4j.event.*
 import com.fasterxml.jackson.databind.*
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.github.mgurov.domain.customers
+import com.github.mgurov.domain.products
 import io.ktor.jackson.*
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -47,6 +48,10 @@ fun Application.module(testing: Boolean = false) {
 
         get("/api/customers/") {
             call.respond(customers)
+        }
+
+        get("/api/products/") {
+            call.respond(products)
         }
     }
 }
