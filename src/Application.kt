@@ -10,6 +10,7 @@ import io.ktor.http.content.*
 import io.ktor.features.*
 import org.slf4j.event.*
 import com.fasterxml.jackson.databind.*
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.github.mgurov.domain.customers
 import io.ktor.jackson.*
 
@@ -26,6 +27,7 @@ fun Application.module(testing: Boolean = false) {
     install(ContentNegotiation) {
         jackson {
             enable(SerializationFeature.INDENT_OUTPUT)
+            registerModule(JavaTimeModule())
         }
     }
 
