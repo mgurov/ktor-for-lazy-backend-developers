@@ -38,11 +38,11 @@ class ApplicationTest {
     @Test
     fun `should limit the size of data returned`() {
         withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "/api/orders/?limit=10").apply {
+            handleRequest(HttpMethod.Get, "/api/orders/?limit=2").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
 
                 val parsed: List<Order> = mapper.readValue(response.byteContent!!)
-                assertThat(parsed).hasSize(10)
+                assertThat(parsed).hasSize(2)
             }
         }
     }
