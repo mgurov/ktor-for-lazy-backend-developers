@@ -30,7 +30,6 @@ class ApplicationTest {
                 assertThat(parsed.map { it.firstName to it.secondName }).containsExactlyInAnyOrder(
                     "First" to "Uno", "Second" to "Dos"
                 )
-                assertEquals("HELLO WORLD!", parsed)
             }
         }
     }
