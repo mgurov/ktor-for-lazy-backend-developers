@@ -61,9 +61,15 @@ fun Application.module(testing: Boolean = false) {
             call.respond(orders.take(limit))
         }
 
-        get("/api/orders/id/:orderId") {
-            val limit = call.request.queryParameters["limit"]?.toInt() ?: 10
-            call.respond(orders.take(limit))
+        get("/api/orders/id/{orderId}") {
+            val orderId = call.parameters["orderId"]
+            val order = orders.find { it.id == orderId }
+            if (order != null) {
+                call.respond(order)
+            } else {
+                call.respond(HttpStatusCode.NoContent)
+            }
+
         }
     }
 }
