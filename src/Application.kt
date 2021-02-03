@@ -60,6 +60,11 @@ fun Application.module(testing: Boolean = false) {
             val limit = call.request.queryParameters["limit"]?.toInt() ?: 10
             call.respond(orders.take(limit))
         }
+
+        get("/api/orders/id/:orderId") {
+            val limit = call.request.queryParameters["limit"]?.toInt() ?: 10
+            call.respond(orders.take(limit))
+        }
     }
 }
 
