@@ -5,7 +5,6 @@ import io.ktor.response.*
 import io.ktor.request.*
 import io.ktor.routing.*
 import io.ktor.http.*
-import io.ktor.content.*
 import io.ktor.http.content.*
 import io.ktor.features.*
 import org.slf4j.event.*
@@ -52,8 +51,29 @@ fun Application.module(testing: Boolean = false) {
             call.respond(customers)
         }
 
+        get("/api/customers/id/{customerId}") {
+            val id = call.parameters["customerId"]
+            val customer = customers.find { it.id == id }
+            if (customer != null) {
+                call.respond(customer)
+            } else {
+                call.respond(HttpStatusCode.NoContent)
+            }
+        }
+
         get("/api/products/") {
             call.respond(products)
+        }
+
+        get("/api/products/id/{productId}") {
+            val id = call.parameters["productId"]
+            val product = customers.find { it.id == id }
+            if (product != null) {
+                call.respond(product)
+            } else {
+                call.respond(HttpStatusCode.NoContent)
+            }
+
         }
 
         get("/api/orders/") {
@@ -69,7 +89,6 @@ fun Application.module(testing: Boolean = false) {
             } else {
                 call.respond(HttpStatusCode.NoContent)
             }
-
         }
     }
 }
