@@ -4,7 +4,6 @@ import domain.Customer
 import java.math.BigDecimal
 import java.time.Instant
 import kotlin.random.Random
-import java.util.*
 
 val customers = listOf(
     Customer(
@@ -37,7 +36,7 @@ val rnd = Random.Default
 
 val orders = (1..100).map {
     Order(
-        userId = customers[rnd.nextInt(customers.size)].id,
+        customerId = customers[rnd.nextInt(customers.size)].id,
         lines = products.shuffled(rnd).take(rnd.nextInt(products.size + 1)).map { product ->
             Order.Line(
                 productId = product.id,

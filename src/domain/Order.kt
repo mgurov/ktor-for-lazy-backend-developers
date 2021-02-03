@@ -6,7 +6,7 @@ import java.util.*
 
 data class Order(
     val id: String = UUID.randomUUID().toString(),
-    val userId: String,
+    val customerId: String,
     val created: Instant = Instant.now(),
     val lines: List<Line>,
 ) {
