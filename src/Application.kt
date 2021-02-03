@@ -14,6 +14,7 @@ import com.github.mgurov.domain.customers
 import com.github.mgurov.domain.orders
 import com.github.mgurov.domain.products
 import io.ktor.jackson.*
+import java.util.concurrent.TimeUnit
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -52,6 +53,7 @@ fun Application.module(testing: Boolean = false) {
         }
 
         get("/api/customers/id/{customerId}") {
+            TimeUnit.SECONDS.sleep(3L)
             val id = call.parameters["customerId"]
             val customer = customers.find { it.id == id }
             if (customer != null) {
@@ -82,6 +84,7 @@ fun Application.module(testing: Boolean = false) {
         }
 
         get("/api/orders/id/{orderId}") {
+            TimeUnit.SECONDS.sleep(2L)
             val orderId = call.parameters["orderId"]
             val order = orders.find { it.id == orderId }
             if (order != null) {
